@@ -9,6 +9,8 @@ public class playercontroller : MonoBehaviour
     public Animator animator;
     public float speed;
     public float jump;
+   // public float jumpForce;
+    public GroundCheck GroundCheck;
     private Rigidbody2D rb2d;
 
     private void Awake()
@@ -60,7 +62,7 @@ public class playercontroller : MonoBehaviour
         if (Vertical >0)
         {
             animator.SetBool("jump", true);
-
+       
         }
         else
         {
@@ -76,6 +78,17 @@ public class playercontroller : MonoBehaviour
         {
             animator.SetBool("crouch", false);
         }
+
+      //  if (Input.GetKeyDown(KeyCode.Space) && GroundCheck.isGrounded)
+       // {
+       //     jump();
+       // }
+
         
     }
+    //private void jump()
+   // {
+   //     animator.SetTrigger("jump");
+   //     rb2d.velocity = new UnityEngine.Vector2(rb2d.velocity.x, jumpForce);
+   // }
 }
