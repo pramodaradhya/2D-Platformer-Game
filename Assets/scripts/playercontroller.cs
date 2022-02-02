@@ -11,7 +11,10 @@ public class playercontroller : MonoBehaviour
     public float jump;
    // public float jumpForce;
     public GroundCheck GroundCheck;
+    
     private Rigidbody2D rb2d;
+    private bool isGrounded = false;
+   
 
     private void Awake()
     {
@@ -29,6 +32,7 @@ public class playercontroller : MonoBehaviour
         float Vertical = Input.GetAxisRaw("Vertical");
         MoveCharacter(horizontal, Vertical);
         playMovementAnimation(horizontal , Vertical);
+        isGrounded = GroundCheck.isGrounded;
     }
 
     
@@ -47,26 +51,29 @@ public class playercontroller : MonoBehaviour
     private void playMovementAnimation(float horizontal , float Vertical)
 {
         animator.SetFloat("speed", Mathf.Abs(horizontal));
-
+      //  animator.SetBool("jump", );
+        animator.SetBool("isGrounded", isGrounded);
         UnityEngine.Vector3 scale = transform.localScale;
-        if (horizontal < 0)
-        {
-            scale.x = -1f * Mathf.Abs(scale.x);
-        }
-        else if (horizontal > 0)
-        {
-            scale.x = Mathf.Abs(scale.x);
-        }
-        transform.localScale = scale;
-
-        if (Vertical >0)
+        // float hori = horizontal < 0 ? scale.x = -1f * Mathf.Abs(scale.x) : scale.x = Mathf.Abs(scale.x);
+         if (horizontal < 0)
+         {
+             scale.x = -1f * Mathf.Abs(scale.x);
+         }
+         else if (horizontal > 0)
+         {
+             scale.x = Mathf.Abs(scale.x);
+         }
+         transform.localScale = scale;
+       
+        if (Vertical > 0 && isGrounded == true)
         {
             animator.SetBool("jump", true);
-       
+            
         }
         else
         {
             animator.SetBool("jump", false);
+            
         }
         transform.localScale = scale;
 
@@ -77,18 +84,7 @@ public class playercontroller : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.LeftControl))
         {
             animator.SetBool("crouch", false);
-        }
-
-      //  if (Input.GetKeyDown(KeyCode.Space) && GroundCheck.isGrounded)
-       // {
-       //     jump();
-       // }
-
-        
+        }     
     }
-    //private void jump()
-   // {
-   //     animator.SetTrigger("jump");
-   //     rb2d.velocity = new UnityEngine.Vector2(rb2d.velocity.x, jumpForce);
-   // }
+  
 }

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class GroundCheck : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [serializeField] private LayerMask PlatformLayerMask;
+    
     public bool isGrounded;
-
     private void OnTriggerStay2D(Collider2D collision)
     {
         isGrounded = true;
