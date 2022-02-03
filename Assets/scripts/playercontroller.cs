@@ -22,6 +22,12 @@ public class playercontroller : MonoBehaviour
         rb2d = gameObject.GetComponent<Rigidbody2D>();
         SpriteRenderer sprite = gameObject.GetComponent<SpriteRenderer>();
     }
+
+    public void PickUpKey()
+    {
+        Debug.Log("player picked up the key");
+    }
+
     // private void OnCollisionEnter2D(Collision2D collision)
     // {
     //     Debug.Log("collision:" + collision.gameObject.name);
@@ -86,5 +92,22 @@ public class playercontroller : MonoBehaviour
             animator.SetBool("crouch", false);
         }     
     }
-  
+    /*
+    public float timeinair = 0;
+    public float deathtimer = 10;
+    private bool dead = false;
+    private GroundCheck player;
+
+    void update()
+    {
+        if (!player.isGrounded)
+        {
+            timeinair += Time.deltaTime;
+        }
+        else if(timeinair >= deathtimer)
+        {
+            dead = true;
+        }
+    }
+    */
 }
