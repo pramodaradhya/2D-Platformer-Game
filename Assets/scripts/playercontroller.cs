@@ -11,6 +11,7 @@ public class playercontroller : MonoBehaviour
     public float jump;
    // public float jumpForce;
     public GroundCheck GroundCheck;
+    public ScoreController ScoreController;
     
     private Rigidbody2D rb2d;
     private bool isGrounded = false;
@@ -26,6 +27,7 @@ public class playercontroller : MonoBehaviour
     public void PickUpKey()
     {
         Debug.Log("player picked up the key");
+        ScoreController.IncreaseScore(10);
     }
 
     // private void OnCollisionEnter2D(Collision2D collision)
