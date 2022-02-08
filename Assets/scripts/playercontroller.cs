@@ -3,11 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class playercontroller : MonoBehaviour
 {
     public Animator animator;
     public float speed;
+    public GameOverController gameOverController;
     public float jump;
    // public float jumpForce;
     public GroundCheck GroundCheck;
@@ -23,6 +25,22 @@ public class playercontroller : MonoBehaviour
         rb2d = gameObject.GetComponent<Rigidbody2D>();
         SpriteRenderer sprite = gameObject.GetComponent<SpriteRenderer>();
     }
+
+    public void Killplayer()
+    {
+        Debug.Log("player is killed by enemy");
+        // Destroy(gameObject);  klls player too
+        gameOverController.PlayerDied();
+        // ReloadLevel();
+       this.enabled = false;
+    }
+    /*
+    private void ReloadLevel()
+    {
+        Debug.Log("reloading scene 0");
+        SceneManager.LoadScene(0);
+    }
+    */
 
     public void PickUpKey()
     {
@@ -92,7 +110,8 @@ public class playercontroller : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.LeftControl))
         {
             animator.SetBool("crouch", false);
-        }     
+        }    
+ 
     }
     /*
     public float timeinair = 0;
