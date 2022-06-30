@@ -19,7 +19,8 @@ public class GameOverController : MonoBehaviour
     }
     private void ReloadLevel()
     {
-        Debug.Log("reloading scene 0");
-        SceneManager.LoadScene(1);
+        Debug.Log("reloading scene...");
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.buildIndex);
     }
 }
